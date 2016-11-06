@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+	<title>Contact</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<style type="text/css">
+		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+		.tg .tg-4eph{background-color:#f9f9f9}
+	</style>
+	<script type="text/javascript">
+	    /*<![CDATA[*/
+	   function onEdit(id, name, phone, email) {
+		    document.getElementById('id').value = id; 
+	    	document.getElementById('name').value = name; 
+	    	document.getElementById('phone').value = phone; 
+	    	document.getElementById('email').value = email; 
+	    }
+	    
+	    function reset() {
+	    	alert('resetting');
+	    	document.getElementById('name').value = ""; 
+	    	document.getElementById('phone').value = ""; 
+	    	document.getElementById('email').value = ""; 
+	    	document.getElementById('id').value = "";
+	    }
+	    /*]]>*/
+	  </script>	
+</head>
+
+<body>
+<h2>
+	Add a Contact
+</h2>
+
+<form action="#" th:action="@{/add}" th:object="${contact}" method="post">
+    	<p>Name: <input type="text" id="name" th:field="*{name}" /></p>
+        <p>Phone: <input type="text" id="phone" th:field="*{phone}" /></p>
+        <p>Email: <input type="text" id="email" th:field="*{email}" /></p>
+        <p><input type="hidden" id="id" th:field="*{id}" /></p>
+        <p><input type="submit" value="Submit" /> 
+        <input type="button" name="clear" value="Clear" onclick="javascript:reset();"/>
+        </p>
+</form>
+
+<br></br>
+
+<div th:if="${not #lists.isEmpty(contacts)}">
+<h3>Contacts List</h3>
+
+	<table class="tg">
+	<tr>
+		<th width="80">Id</th>
+		<th width="120">Contact Name</th>
+		<th width="120">Contact Phone</th>
+		<th width="120">Contact Email</th>
+		<th width="60">Edit</th>
+		<th width="60">Delete</th>
+	</tr>
+	<tr th:each="contact : ${#lists.sort(contacts)}">
+	        <td th:text="${contact.id}"></td>
+	        <td th:text="${contact.name}"></td>
+	        <td th:text="${contact.phone}"></td>
+	        <td th:text="${contact.email}"></td>
+			<td><a th:href ="'javascript:onEdit(\'' + ${contact.id} +'\',\''+ ${contact.name} + '\',\''+ ${contact.phone} + '\',\''+ ${contact.email} + '\');'">Edit</a></td>
+			<td><a th:href = "@{/delete(id=${contact.id})}" >Delete</a></td>	
+			       
+	</tr>	
+	</table>
+</div>
+
+
+	
+	
+	
+</body>
+</html>
