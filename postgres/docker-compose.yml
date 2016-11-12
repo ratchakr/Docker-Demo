@@ -1,0 +1,12 @@
+version: "2"
+services:
+  db:
+    build: .
+    ports:
+      - "5432:5432"
+    environment:
+      - DB_NAME=mytestdb
+      - DB_USER=postgres
+      - DB_PASS=password
+      - SCHEMA=iot 
+  
