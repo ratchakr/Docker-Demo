@@ -28,4 +28,4 @@ INSERT INTO iot.contactsdemo(id, name, phone, email)
     VALUES (2, 'alpha beta', 1234567890, 'abeta@yahoo.com');
     
 INSERT INTO iot.contactsdemo(id, name, phone, email)
-    VALUES (2, 'tom hanks', 1234567890, 'thanks@yahoo.com');
+    VALUES (3, 'tom hanks', 1234567890, 'thanks@yahoo.com');
