@@ -1,0 +1,18 @@
+version: "2"
+services:
+  web:
+    image: chakrar27/contactsdemo:latest
+    ports:
+      - 8080:8080
+    depends_on: 
+      - db 
+  db:
+    build: ./postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - DB_NAME=mytestdb
+      - DB_USER=postgres
+      - DB_PASS=password
+      - SCHEMA=iot 
+  

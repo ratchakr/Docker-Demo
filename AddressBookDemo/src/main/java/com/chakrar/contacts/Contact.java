@@ -22,13 +22,20 @@ public class Contact implements Serializable, Comparable<Contact> {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "name")
+    private String name;
+	
+
+	@Column(name = "phone")
+    private String phone;
+    
+    @Column(name = "email")
+    private String email;
+     
     public Contact() {
 
 	}
-
-	@Column(name = "name")
-    private String name;
-     
+    
     /**
 	 * @return the id
 	 */
@@ -85,11 +92,6 @@ public class Contact implements Serializable, Comparable<Contact> {
 		this.email = email;
 	}
 
-	@Column(name = "phone")
-    private String phone;
-    
-    @Column(name = "email")
-    private String email;
 
 	public Contact(String name, String phone, String email) {
 		super();
